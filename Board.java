@@ -3,15 +3,18 @@ import java.util.ArrayList;
 public class Board {
     
     ArrayList<ArrayList<Slot>> board;
-    ArrayList<ArrayList<Piece>> buckets;
+    ArrayList<Slot> buckets;
     ArrayList<Integer> depths;
     int length;
     int depth;
+    int winLen = 4;
 
     public Board(int length, int depth){
 
         this.length = length;
         this.depth = depth;
+
+        buckets = new ArrayList<Slot>();
 
         depths = new ArrayList<Integer>(length);
         for(int i = 0; i < length; i++){
@@ -32,7 +35,7 @@ public class Board {
 
     public Board(){
         
-        this(10,4);
+        this(10,6);
 
     }
 
@@ -61,12 +64,6 @@ public class Board {
 
         int deep = depths.get(position - 1);
 
-        //ArrayList<Piece>[] updateBound = new ArrayList<Piece>[6];
-
-        //Piece[] updateBound = new Piece[6];
-
-        ArrayList<Piece> updateBound = new ArrayList<>(8);
-
         if(deep == 0){
             System.out.println("Cannot place here anymore!!");
             return;
@@ -85,6 +82,8 @@ public class Board {
                  p.connects.get(1).addAll(c.getGroup(1)); // adds all the pieces that piece is attached to
                  c.connects.get(5).add(p); // adding it to the connecting piece's connections
                  //updateBound.set(5, c); // Update afterwards
+
+                 // Check if either end of the streak
 
                  ArrayList<Piece> updateList = c.connects.get(1);
                  updateList.forEach(type -> {
@@ -105,7 +104,15 @@ public class Board {
                 p.connects.set(2, c);
                 p.connects.get(2).addAll(c.getGroup(2));
                 c.connects.get(6).add(p);
-                updateBound.set(6, c); // Update afterwards
+                //updateBound.set(6, c); // Update afterwards
+
+                ArrayList<Piece> updateList = c.connects.get(2);
+                 updateList.forEach(type -> {
+
+                    type.connects.get(6).add(p);
+
+                 });
+
             } else{
                 p.connects.set(2, null);
             }
