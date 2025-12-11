@@ -8,8 +8,8 @@ public class Piece {
     public Piece(char face){
 
         this.face = face;
-        connects = new ArrayList<>(6);
-        for(int i = 0; i < 6; i++){
+        connects = new ArrayList<>(8);
+        for(int i = 0; i < 8; i++){
             connects.add(new ArrayList<Piece>());
         }
 
@@ -18,6 +18,11 @@ public class Piece {
     public void update(int direction){
 
 
+
+    }
+
+    public ArrayList<Piece> getGroup(int direction){
+        return connects.get(direction);
     }
 
     public String toString(){

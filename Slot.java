@@ -26,5 +26,13 @@ public class Slot {
     public void put(Piece p){
         this.p = p;
     }
+
+    public boolean isPiece(){
+        return p == null;
+    }
+
+    public Piece getPiece(){
+        return this.p;
+    }
     
 }
