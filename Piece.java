@@ -20,7 +20,7 @@ public class Piece {
 
     public String toString(){
 
-        String result = "●";
+        String result = "_O_";
 
         return result;
 

@@ -13,6 +13,11 @@ public class Board {
         this.length = length;
         this.depth = depth;
 
+        depths = new ArrayList<Integer>(length);
+        for(int i = 0; i < length; i++){
+            depths.add(depth);
+        }
+
         board = new ArrayList<>(depth);
         for(int i = 0; i < depth; i++){
             board.add(new ArrayList<Slot>(length));
@@ -49,6 +54,18 @@ public class Board {
         }
 
         return result;
+
+    }
+
+    public void drop(int position){
+
+        int deep = depths.get(position - 1);
+
+        Slot target = board.get(deep - 1).get(position - 1);
+        Piece p = new Piece();
+        target.put(p);
+
+        depths.set(position - 1, deep - 1);
 
     }
 

@@ -23,5 +23,8 @@ public class Slot {
         return result;
     }
 
+    public void put(Piece p){
+        this.p = p;
+    }
     
 }
