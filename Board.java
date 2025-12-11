@@ -63,7 +63,7 @@ public class Board {
     public void drop(int position, Player player){
 
         int deep = depths.get(position - 1);
-        char face = player.getFace();
+        //char face = player.getFace();
 
         if(deep == 0){
             System.out.println("Cannot place here anymore!!");
@@ -71,7 +71,7 @@ public class Board {
         }
 
         Slot target = board.get(deep - 1).get(position - 1);
-        Piece p = new Piece(face);
+        Piece p = new Piece(player);
         target.put(p);
 
         // // In the 1 direction

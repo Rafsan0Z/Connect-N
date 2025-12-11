@@ -16,7 +16,7 @@ public class Player {
 
     public boolean hasWon(){
         for(Slot s: winningSlots){
-            if(s.isPiece() && s.getPiece().face == face){
+            if(s.isPiece() && s.getPiece().getPlayer().getFace() == face){
                 return true;
             }
         }

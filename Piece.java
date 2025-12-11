@@ -3,22 +3,15 @@ import java.util.ArrayList;
 public class Piece {
     
     ArrayList<ArrayList<Piece>> connects;
-    char face;
     Player p;
 
-    public Piece(char face){
+    public Piece(Player p){
 
-        this.face = face;
+        this.p = p;
         connects = new ArrayList<>(8);
         for(int i = 0; i < 8; i++){
             connects.add(new ArrayList<Piece>());
         }
-
-    }
-
-    public Piece(Player p){
-
-        this(p.getFace());
 
     }
 
@@ -34,10 +27,12 @@ public class Piece {
 
     public String toString(){
 
-        String result = "_" + face + "_";
+        String result = "_" + p.getFace() + "_";
 
         return result;
 
     }
+
+    public Player getPlayer(){return this.p;}
 
 }
