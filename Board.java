@@ -11,7 +11,7 @@ public class Board {
     public Board(int length, int depth){
 
         this.length = length;
-        this.height = depth;
+        this.depth = depth;
 
         board = new ArrayList<>(depth);
         for(int i = 0; i < depth; i++){

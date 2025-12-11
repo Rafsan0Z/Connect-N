@@ -14,7 +14,7 @@ public class Slot {
         String result = "";
         
         if(p == null){
-            result = "__";
+            result = "___";
         }
         else{
             result = p.toString();
