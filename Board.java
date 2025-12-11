@@ -60,6 +60,16 @@ public class Board {
 
     }
 
+    private boolean inGrid(int depth, int position){
+
+        if(depth > this.depth) return false;
+        if(depth < 0) return false;
+        if(position > this.length) return false;
+        if(position < 0) return false;
+
+        return true;
+    }
+
     public void drop(int position, Player player){
 
         int deep = depths.get(position - 1);
@@ -76,7 +86,7 @@ public class Board {
 
         // In the 1 direction
         Slot direction = board.get(deep).get(position);
-        if(direction.isPiece() && (position < 10) ){
+        if(direction.isPiece() && this.inGrid(deep + 1, position + 1) ){
             Piece c = direction.getPiece();
             if(c.getPlayer().getFace() == face){
                  p.connects.get(1).add(c); // adds the immediate piece
@@ -85,11 +95,11 @@ public class Board {
                  if(p.connects.get(1).size() == winLen - 1){
 
                     // if deep - 2, position - 2 is in the grid, that slot is now a winningSlot
+                    if(this.inGrid(deep - 1, position - 1)) player.getSlots().add(board.get(deep-2).get(position-2));
 
-
-                    // if deep, position is in the grid, that slot is now a winningSlot
-
-
+                    // get the final slot
+                    // get the slot dimension for the 1 direction
+                    // if that's in grid, then we add it to winningSlot
 
                  }
 

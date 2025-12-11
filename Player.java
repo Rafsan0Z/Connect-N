@@ -23,6 +23,8 @@ public class Player {
         return false;
     }
 
+    public ArrayList<Slot> getSlots(){return this.winningSlots;}
+
     public String getName(){return this.name;}
 
     public char getFace(){return this.face;}
