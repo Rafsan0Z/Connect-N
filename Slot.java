@@ -25,6 +25,7 @@ public class Slot {
 
     public void put(Piece p){
         this.p = p;
+        p.setSlot(this);
     }
 
     public boolean isPiece(){

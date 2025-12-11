@@ -70,6 +70,62 @@ public class Board {
         return true;
     }
 
+    public boolean isFull(){
+
+        for(ArrayList<Slot> deep : board){
+            for(Slot position : deep){
+                if(!position.isPiece()) return false;
+            }
+        }
+        return true;
+    }
+
+    private Slot getNextSlot(int direction, int depth, int position){ 
+
+        Slot result = null;
+        if(!inGrid(depth, position)) return null;
+
+        switch (direction) {
+            case 1:
+                result = board.get(depth - 1).get(position + 1);
+                break;
+            
+            case 2:
+                result = board.get(depth).get(position + 1);
+                break;
+
+            case 3:
+                result = board.get(depth + 1).get(position + 1);
+                break;
+
+            case 4:
+                result = board.get(depth + 1).get(position);
+                break;
+
+            case 5:
+                result = board.get(depth + 1).get(position - 1);
+                break;
+
+            case 6:
+                result = board.get(depth).get(position - 1);
+                break;
+
+            case 7:
+                result = board.get(depth - 1).get(position - 1);
+                break;
+
+            case 8:
+                result = board.get(depth - 1).get(position);
+                break;
+
+            default:
+                break;
+        }
+
+        return result;
+
+    }
+
     public void drop(int position, Player player){
 
         int deep = depths.get(position - 1);
@@ -94,12 +150,20 @@ public class Board {
 
                  if(p.connects.get(1).size() == winLen - 1){
 
-                    // if deep - 2, position - 2 is in the grid, that slot is now a winningSlot
-                    if(this.inGrid(deep - 1, position - 1)) player.getSlots().add(board.get(deep-2).get(position-2));
+                    // if deep - 2, position - 2 is in the grid, that slot is now a winningSlot (Wrong logic!)
+                    //if(this.inGrid(deep - 1, position - 1)) player.getSlots().add(board.get(deep-2).get(position-2));
 
                     // get the final slot
                     // get the slot dimension for the 1 direction
-                    // if that's in grid, then we add it to winningSlot
+                    Slot last = p.connects.get(1).getLast().getSlot();
+                    Slot aim = this.getNextSlot(1, last.depth, last.length);
+
+                    if(aim != null) player.getSlots().add(aim);
+
+                    // int last_depth = last.depth;
+                    // int last_position = last.length;
+                    // // if that's in grid, then we add it to winningSlot
+                    // if(this.inGrid(last_depth + 1, last_position + 1)) player.getSlots().add(board.get(last_depth + 1).get(last_position + 1));
 
                  }
 
