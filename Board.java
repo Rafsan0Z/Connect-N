@@ -57,7 +57,7 @@ public class Board {
 
     }
 
-    public void drop(int position){
+    public void drop(int position, char face){
 
         int deep = depths.get(position - 1);
 
@@ -67,7 +67,7 @@ public class Board {
         }
 
         Slot target = board.get(deep - 1).get(position - 1);
-        Piece p = new Piece();
+        Piece p = new Piece(face);
         target.put(p);
 
         depths.set(position - 1, deep - 1);
