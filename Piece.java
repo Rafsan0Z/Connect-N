@@ -4,6 +4,7 @@ public class Piece {
     
     ArrayList<ArrayList<Piece>> connects;
     char face;
+    Player p;
 
     public Piece(char face){
 
@@ -12,6 +13,12 @@ public class Piece {
         for(int i = 0; i < 8; i++){
             connects.add(new ArrayList<Piece>());
         }
+
+    }
+
+    public Piece(Player p){
+
+        this(p.getFace());
 
     }
 
