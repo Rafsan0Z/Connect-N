@@ -61,6 +61,11 @@ public class Board {
 
         int deep = depths.get(position - 1);
 
+        if(deep == 0){
+            System.out.println("Cannot place here anymore!!");
+            return;
+        }
+
         Slot target = board.get(deep - 1).get(position - 1);
         Piece p = new Piece();
         target.put(p);

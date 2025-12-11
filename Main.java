@@ -5,19 +5,25 @@ public class Main {
     public static void main(String[] args){
 
         clearTerminal();
+        Scanner scanner = new Scanner(System.in);
+        String quit = "";
 
         Board b = new Board();
         System.out.println(b.toString());
 
-        Scanner scanner = new Scanner(System.in);
+        while(!quit.equals("q")){
 
-        System.out.println("Enter the position you want to drop your piece into: ");
-        int pos = scanner.nextInt();
-        scanner.nextLine();
+            System.out.println("Enter the position you want to drop your piece into: ");
+            int pos = scanner.nextInt();
+            scanner.nextLine();
 
-        b.drop(pos);
+            b.drop(pos);
+            System.out.println(b.toString());
 
-        System.out.println(b.toString());
+            System.out.println("Quit or keep going? ");
+            quit = scanner.next();
+
+        }
 
         scanner.close();
 
